@@ -51,11 +51,11 @@ export const getCellTimeseries = (
         endIndex = startOffset + numCellValues - 1;
 
         // eslint-disable-next-line no-loop-func
-        let cellIndex = indexes.findIndex((v) => v === cellNum)
+        let cellIndex = indexes.findIndex((v) => v === cellNum);
         if (cellIndex === -1) {
           cells.push(new Array(dataLength).fill(null));
           indexes.push(cellNum);
-          cellIndex = cells.length - 1
+          cellIndex = cells.length - 1;
         }
         for (let j = 0; j < numCellValues; j++) {
           // const subLayerIndex = j % sublayers
@@ -98,7 +98,7 @@ export const parseFourwings = async (
     return [];
   }
   const data = buffersLength.map((length, index, buffers) => {
-    if (!length) return []
+    if (!length) return [];
     const start = index === 0 ? 0 : buffersLength[index - 1];
     const endOffset = index === buffers.length - 1 ? 1 : 0;
     const end = start + length + endOffset;

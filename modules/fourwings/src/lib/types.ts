@@ -17,4 +17,4 @@ export type FourwingsOptions = {
 
 export type FourwingsLoaderOptions = LoaderOptions & {
   fourwings?: FourwingsOptions;
-};;
+};
