@@ -50,9 +50,12 @@ export const getCellTimeseries = (
         const startOffset = startIndex + CELL_VALUES_START_INDEX;
         endIndex = startOffset + numCellValues - 1;
 
-        if (!cells[cellNum]) {
+        // eslint-disable-next-line no-loop-func
+        let cellIndex = indexes.findIndex((v) => v === cellNum)
+        if (cellIndex === -1) {
           cells.push(new Array(dataLength).fill(null));
           indexes.push(cellNum);
+          cellIndex = cells.length - 1
         }
         for (let j = 0; j < numCellValues; j++) {
           // const subLayerIndex = j % sublayers
@@ -60,12 +63,12 @@ export const getCellTimeseries = (
           // eslint-disable-next-line max-depth
           if (cellValue !== NO_DATA_VALUE) {
             // eslint-disable-next-line max-depth
-            if (!cells[cells.length - 1]?.[subLayerIndex]) {
-              cells[cells.length - 1]![subLayerIndex] = new Array(
+            if (!cells[cellIndex]?.[subLayerIndex]) {
+              cells[cellIndex]![subLayerIndex] = new Array(
                 tileMaxIntervalFrame - tileMinIntervalFrame
               ).fill(null);
             }
-            cells[cells.length - 1]![subLayerIndex][
+            cells[cellIndex]![subLayerIndex][
               startFrame - tileMinIntervalFrame + Math.floor(j / sublayers)
             ] = cellValue * SCALE_VALUE + OFFSET_VALUE;
           }
@@ -95,6 +98,7 @@ export const parseFourwings = async (
     return [];
   }
   const data = buffersLength.map((length, index, buffers) => {
+    if (!length) return []
     const start = index === 0 ? 0 : buffersLength[index - 1];
     const endOffset = index === buffers.length - 1 ? 1 : 0;
     const end = start + length + endOffset;
