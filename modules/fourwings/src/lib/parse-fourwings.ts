@@ -97,15 +97,18 @@ export const parseFourwings = async (
   if (!buffersLength?.length) {
     return [];
   }
-  const data = buffersLength.map((length, index, buffers) => {
-    if (!length) return [];
-    const start = index === 0 ? 0 : buffersLength[index - 1];
-    const endOffset = index === buffers.length - 1 ? 1 : 0;
-    const end = start + length + endOffset;
-    const buffer = datasetsBuffer.slice(start, end);
+  let start = 0;
+  const data = buffersLength.map((length, index) => {
+    if (length === 0) {
+      return [];
+    }
+    const buffer = datasetsBuffer.slice(
+      start,
+      index !== buffersLength.length ? start + length : undefined
+    );
+    start += length;
     return new Pbf(buffer).readFields(readData, [])[0];
   });
-
   return {
     cols,
     rows,
