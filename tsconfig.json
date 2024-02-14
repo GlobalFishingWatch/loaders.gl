@@ -49,6 +49,7 @@
       "@loaders.gl/excel": ["modules/excel/src"],
       "@loaders.gl/excel/test": ["modules/excel/test"],
       "@loaders.gl/flatgeobuf": ["modules/flatgeobuf/src"],
+      "@loaders.gl/fourwings": ["modules/fourwings/src"],
       "@loaders.gl/flatgeobuf/test": ["modules/flatgeobuf/test"],
       "@loaders.gl/geopackage": ["modules/geopackage/src"],
       "@loaders.gl/geopackage/test": ["modules/geopackage/test"],
