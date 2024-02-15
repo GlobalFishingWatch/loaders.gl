@@ -16,6 +16,7 @@
     {"path": "modules/draco"},
     {"path": "modules/excel"},
     {"path": "modules/flatgeobuf"},
+    {"path": "modules/fourwings"},
     {"path": "modules/geopackage"},
     {"path": "modules/geotiff"},
     {"path": "modules/gis"},
@@ -50,9 +51,7 @@
     {"path": "modules/zarr"},
     {"path": "modules/zip"}
   ],
-  "include": [
-    "modules/*/src"
-  ],
+  "include": ["modules/*/src"],
   "exclude": [
     "modules/*/src/libs",
     "modules/tile-converter",
